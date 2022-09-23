@@ -1,0 +1,12 @@
+name: Matrix 
+on: workflow_dispatch 
+
+jobs: 
+  node-version:
+    strategy: 
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest] 
+        node_version: [6, 8, 10]
+    steps: 
+      - name: Print test 
+        run: echo ${{ matrix.node_version }} ${{ matrix.os }}
