@@ -2,8 +2,8 @@ name: Matrix
 on: workflow_dispatch 
 
 jobs: 
-  runs-on: ubuntu-latest
   print:
+    runs-on: ubuntu-latest
     strategy: 
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest] 
