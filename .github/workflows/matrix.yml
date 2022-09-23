@@ -2,7 +2,8 @@ name: Matrix
 on: workflow_dispatch 
 
 jobs: 
-  node-version:
+  runs-on: ubuntu-latest
+  print:
     strategy: 
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest] 
