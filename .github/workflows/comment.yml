@@ -10,7 +10,7 @@ jobs:
       - name: print Sha
         run: |
           echo "SHA:"
-          echo "${{ github.event[github.event_name].head.sha }}"
+          echo "${{ github.event.sha }}"
       - name: Update status
         if: ${{ always() && github.event_name == 'issue_comment' }}
         uses: Sibz/github-status-action@v1.1.6
@@ -18,7 +18,7 @@ jobs:
           authToken: ${{ secrets.GITHUB_TOKEN }}
           context: 'E2E: Test report'
           state: 'success'
-          sha: ${{ github.event[github.event_name].head.sha }}
+          sha: ${{ github.event.sha }}
           description: Skipped - No tests found
 
   print_stuff:
