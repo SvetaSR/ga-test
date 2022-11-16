@@ -15,11 +15,11 @@ jobs:
         if: ${{ always() && github.event_name == 'issue_comment' }}
         uses: Sibz/github-status-action@v1.1.6
         with:
-          authToken: ${{ secrets.GITHUB_TOKEN }}
-          context: 'E2E: Test report'
+          authToken: ${{secrets.GITHUB_TOKEN}}
+          context: 'Test run'
+          description: 'Passed'
           state: 'success'
-          sha: ${{ github.sha }}
-          description: Skipped - No tests found
+          sha: ${{github.event.pull_request.head.sha || github.sha}}
 
   print_stuff:
     runs-on: ubuntu-latest
