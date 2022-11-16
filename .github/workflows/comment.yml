@@ -4,6 +4,23 @@ on:
     types: [created]
     
 jobs:
+  update_status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print Sha
+        run: |
+          echo "SHA:"
+          echo "${{ github.event[github.event_name].head.sha }}"
+      - name: Update status
+        if: ${{ always() && github.event_name == 'issue_comment' }}
+        uses: Sibz/github-status-action@v1.1.6
+        with:
+          authToken: ${{ secrets.GITHUB_TOKEN }}
+          context: 'E2E: Test report'
+          state: 'success'
+          sha: ${{ github.event[github.event_name].head.sha }}
+          description: Skipped - No tests found
+
   print_stuff:
     runs-on: ubuntu-latest
     steps:
