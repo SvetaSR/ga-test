@@ -20,6 +20,25 @@ jobs:
           description: 'Passed'
           state: 'success'
           sha: ${{github.event.pull_request.head.sha || github.sha}}
+      - name: Create a release
+        uses: actions/github-script@v6
+        with:
+            script: |
+                const owner = context.repo.owner;
+                const repo = context.repo.repo;
+
+                github.rest.repos.createStatus({
+                  owner,
+                  repo,
+                  sha: "${{ github.sha }}",
+                  status: {
+                    context: "testing",
+                    state: "failure",
+                    owner,
+                    repo,
+                    sha: "${{ github.sha }}",
+                  },
+                });
 
   print_stuff:
     runs-on: ubuntu-latest
