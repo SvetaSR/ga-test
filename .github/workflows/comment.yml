@@ -31,13 +31,7 @@ jobs:
                   owner,
                   repo,
                   sha: "${{ github.sha }}",
-                  status: {
-                    context: "testing",
-                    state: "failure",
-                    owner,
-                    repo,
-                    sha: "${{ github.sha }}",
-                  },
+                  state: "failure",
                 });
 
   print_stuff:
