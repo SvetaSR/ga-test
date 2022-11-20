@@ -27,7 +27,7 @@ jobs:
                 const owner = context.repo.owner;
                 const repo = context.repo.repo;
 
-                github.repos.createStatus({
+                github.rest.repos.createCommitStatus({
                   owner,
                   repo,
                   sha: "${{ github.sha }}",
