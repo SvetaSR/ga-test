@@ -33,7 +33,10 @@ jobs:
                   owner,
                   repo,
                   sha: "${{ github.sha }}",
-                  state: "failure",
+                  state: "success",
+                  target_url: 'https://example.com/build/status',
+                  description: 'The build succeeded!',
+                  context: 'continuous-integration/jenkins'
                 });
 
   print_stuff:
