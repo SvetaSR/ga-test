@@ -9,10 +9,10 @@ jobs:
     steps:
       - name: print Sha
         run: |
-          echo "SHA:"
+          echo "SHAlalala:"
           echo "${{ github.sha }}"
       - name: Update status
-        if: ${{ always() && github.event_name == 'issue_comment' }}
+        if: ${{ always() }}
         uses: Sibz/github-status-action@v1.1.6
         with:
           authToken: ${{secrets.GITHUB_TOKEN}}
