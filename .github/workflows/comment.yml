@@ -20,14 +20,14 @@ jobs:
           description: 'Passed'
           state: 'success'
           sha: ${{github.event.pull_request.head.sha || github.sha}}
-      - name: Create a release
+      - name: Update status with script
         uses: actions/github-script@v6
         with:
             script: |
                 const owner = context.repo.owner;
                 const repo = context.repo.repo;
 
-                github.rest.repos.createStatus({
+                github.repos.createStatus({
                   owner,
                   repo,
                   sha: "${{ github.sha }}",
