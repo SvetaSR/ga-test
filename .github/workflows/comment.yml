@@ -28,18 +28,21 @@ jobs:
             script: |
                 const owner = context.repo.owner;
                 const repo = context.repo.repo;
-
-                const res = await github.rest.repos.createCommitStatus({
+                try {
+                const res = await github.repos.createStatus({
                   owner,
                   repo,
                   sha: "${{ github.sha }}",
                   state: "success",
                   target_url: 'https://example.com/build/status',
                   description: 'The build succeeded!',
-                  context: 'continuous-integration/jenkins'
+                  context: 'ci-something'
                 });
                 
                 console.log(JSON.stringify(res))
+                } catch (e) {
+                  console.log('e', e);
+                }
 
   print_stuff:
     runs-on: ubuntu-latest
