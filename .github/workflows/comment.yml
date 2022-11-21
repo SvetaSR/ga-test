@@ -23,7 +23,7 @@ jobs:
           state: 'success'
           sha: ${{github.event.pull_request.head.sha || github.sha}}
       - name: Update status with script
-        uses: actions/github-script@v6
+        uses: actions/github-script@v5
         with:
             script: |
                 const owner = context.repo.owner;
