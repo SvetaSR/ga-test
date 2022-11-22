@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       statuses: write
-      discussions: write
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
