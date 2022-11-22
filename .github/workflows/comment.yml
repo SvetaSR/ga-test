@@ -22,27 +22,11 @@ jobs:
           description: 'Passed'
           state: 'success'
           sha: ${{github.event.pull_request.head.sha || github.sha}}
-      - name: Update status with script
-        uses: actions/github-script@v5
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v1
         with:
-            script: |
-                const owner = context.repo.owner;
-                const repo = context.repo.repo;
-                try {
-                const res = await github.repos.createStatus({
-                  owner,
-                  repo,
-                  sha: "${{ github.sha }}",
-                  state: "success",
-                  target_url: 'https://example.com/build/status',
-                  description: 'The build succeeded!',
-                  context: 'ci-something'
-                });
-                
-                console.log(JSON.stringify(res))
-                } catch (e) {
-                  console.log('e', e);
-                }
+          message: |
+            Hello world ! :wave:
 
   print_stuff:
     runs-on: ubuntu-latest
