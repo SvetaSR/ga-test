@@ -28,9 +28,8 @@ jobs:
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v1
         with:
-          pr_number: ${{ github.event.issue.number }}
           message: |
-            Hello world ! :wave:
+            Hello world !!!! :wave:
 
   print_stuff:
     runs-on: ubuntu-latest
