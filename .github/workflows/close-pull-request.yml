@@ -11,15 +11,22 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - name: Checkout active PR branch
-        uses: actions/checkout@v3
+      - name: Find Pull Request
+        uses: "juliangruber/find-pull-request-action@v1"
+        id: find-pull-request
         with:
           branch: test
       - name: automerge
+        id: automerge
         uses: "pascalgn/automerge-action@v0.15.5"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_METHOD: squash
           MERGE_REQUIRED_APPROVALS: 0
+          PULL_REQUEST: "${{ steps.find-pull-request.outputs.number }}"
+      - name: feedback
+        if: steps.automerge.outputs.mergeResult == "merged"
+        run: |
+          echo "Pull request ${{ steps.automerge.outputs.pullRequestNumber }} merged!"
           
 
