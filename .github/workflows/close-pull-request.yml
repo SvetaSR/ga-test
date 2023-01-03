@@ -23,6 +23,7 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_METHOD: squash
           MERGE_REQUIRED_APPROVALS: 0
+          MERGE_LABELS: ""
           PULL_REQUEST: "${{ steps.find-pull-request.outputs.number }}"
       - name: feedback
         if: ${{ steps.automerge.outputs.mergeResult == 'merged' }}
