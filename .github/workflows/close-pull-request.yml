@@ -1,0 +1,30 @@
+name: close pull request
+on:
+  workflow_dispatch:
+  
+jobs:
+  update:
+    name: Checkout branch
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout active PR branch
+        uses: actions/checkout@v3
+        with:
+          branch: test
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - id: automerge
+        name: automerge
+        uses: "pascalgn/automerge-action@v0.15.5"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_METHOD: squash
+          MERGE_REQUIRED_APPROVALS: 0
+          
+          
+
