@@ -1,0 +1,21 @@
+name: Trigger job on another repo
+on:
+  workflow_dispatch
+  
+jobs:
+  trigger-ga-test-2:
+    name: Trigger job in ga-test2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PAT }}
+          repository: SvetaSR/ga-test2
+          event-type: hello
+          client-payload: "{name: 'Sveta'}"
+          
+        
+    
+
+  
