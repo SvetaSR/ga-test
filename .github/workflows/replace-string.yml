@@ -19,5 +19,5 @@ jobs:
               string: ${{ inputs.version }}
               replace-with: '$2!'
           - name: "print"
-            run: echo ${{steps.replace-string.outputs}}
+            run: echo ${{steps.replace-string.outputs.replaced}}
       
