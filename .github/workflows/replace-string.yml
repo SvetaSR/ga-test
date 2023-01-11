@@ -23,6 +23,7 @@ jobs:
           - name: "Set new env param"
             run: |
              echo "version_number=${{steps.replace-string.outputs.replaced}}" >> $GITHUB_ENV
+             echo "version_number={steps.replace-string.outputs.replaced}" >> $GITHUB_OUTPUT
           - name: "print2"
             run: echo ${{env.version_number}}
     do-stuff-2:
@@ -30,6 +31,8 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           - name: "print in another job"
-            run: echo ${{env.version_number}}
+            run: |
+                echo ${{env.version_number}}
+                echo ${{needs.do-stuff.outputs.version_number}}
         
       
