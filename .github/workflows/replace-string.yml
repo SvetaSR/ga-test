@@ -1,0 +1,23 @@
+name: Test string replace
+on:
+    workflow_dispatch:
+        inputs:
+            version:
+                description: "version number to deploy"
+                required: true
+                type: string
+
+
+jobs:
+    do-stuff:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: frabert/replace-string-action@v2
+            id: replace-string
+            with:
+              pattern: '(ver)?(\d+)'
+              string: ${{ inputs.version }}
+              replace-with: '$2!'
+          - name: "print"
+            run: echo ${{steps.replace-string.outputs}}
+      
