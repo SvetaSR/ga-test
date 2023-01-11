@@ -5,6 +5,7 @@ name: Print Stuff
 
 env: 
   TEST: '{"name": "sveta"}'
+  SOME_KEY: "name"
 
 jobs:
   print:
@@ -12,4 +13,4 @@ jobs:
     steps: 
       - name: Dump GitHub context 
         run: | 
-            echo "${{fromJSON(env.TEST)['name']}}"
+            echo "${{fromJSON(env.TEST)[env.SOME_KEY]}}"
