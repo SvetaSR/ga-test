@@ -17,7 +17,7 @@ jobs:
             with:
               pattern: '(ver)?(\d+)'
               string: ${{ inputs.version }}
-              replace-with: '$2!'
+              replace-with: '$2'
           - name: "print"
             run: echo ${{steps.replace-string.outputs.replaced}}
       
