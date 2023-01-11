@@ -25,4 +25,11 @@ jobs:
              echo "version_number=${{steps.replace-string.outputs.replaced}}" >> $GITHUB_ENV
           - name: "print2"
             run: echo ${{env.version_number}}
+    do-stuff-2:
+        needs: [do-stuff]
+        runs-on: ubuntu-latest
+        steps:
+          - name: "print in another job"
+            run: echo ${{env.version_number}}
+        
       
