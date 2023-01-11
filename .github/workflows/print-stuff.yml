@@ -3,13 +3,13 @@ on:
   
 name: Print Stuff
 
+env: 
+  TEST: '{"name": "sveta"}'
+
 jobs:
   print:
     runs-on: ubuntu-latest
     steps: 
       - name: Dump GitHub context 
-        env: 
-          GITHUB_CONTEXT: ${{ toJson(github) }} 
-          SOME_KEY: 'job'
         run: | 
-            echo "${{env.GITHUB_CONTEXT[env.SOME_KEY]}}"
+            echo "${{toJson(env.TEST)}}"
