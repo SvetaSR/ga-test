@@ -10,4 +10,6 @@ jobs:
       - name: Dump GitHub context 
         env: 
           GITHUB_CONTEXT: ${{ toJson(github) }} 
-        run: echo "$GITHUB_CONTEXT" 
+          SOME_KEY: 'job'
+        run: | 
+            echo "${{env.GITHUB_CONTEXT[env.SOME_KEY]}}"
