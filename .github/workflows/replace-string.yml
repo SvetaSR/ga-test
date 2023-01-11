@@ -20,4 +20,9 @@ jobs:
               replace-with: '$2'
           - name: "print"
             run: echo ${{steps.replace-string.outputs.replaced}}
+          - name: "Set new env param"
+            run: |
+             echo "version_number=${{steps.replace-string.outputs.replaced}}" >> $GITHUB_ENV
+          - name: "print2"
+            run: echo ${{env.version_number}}
       
